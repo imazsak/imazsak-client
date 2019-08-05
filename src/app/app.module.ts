@@ -6,6 +6,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './auth.interceptor';
+
+const httpInterceptorProviders = [
+  {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+];
 
 @NgModule({
   declarations: [
@@ -18,7 +24,7 @@ import {HomeComponent} from './home/home.component';
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
