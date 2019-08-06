@@ -23,7 +23,7 @@ export class AuthService {
       if (this.validateTokenExp(this.tokenData.token)) {
         return of(this.tokenData.token);
       } else {
-        this.refreshToken().pipe(map(tokenData => tokenData.token));
+        return this.refreshToken().pipe(map(tokenData => tokenData.token));
       }
     } else {
       return of(undefined);
