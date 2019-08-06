@@ -12,9 +12,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {StageInterceptor} from './stage.interceptor';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  {provide: HTTP_INTERCEPTORS, useClass: StageInterceptor, multi: true},
 ];
 
 @NgModule({
