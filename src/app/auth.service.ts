@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   public static readonly refreshUrl = '/auth/core/refresh-token';
   private tokenData: TokenData = undefined;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loadTokenFromLocalStorage();
   }
 
@@ -35,9 +36,10 @@ export class AuthService {
     localStorage.tokenData = JSON.stringify(this.tokenData);
   }
 
-  public removeTokenData() {
+  public logout() {
     this.tokenData = undefined;
     localStorage.removeItem('tokenData');
+    this.router.navigate(['/']);
   }
 
   private refreshToken(): Observable<TokenData> {

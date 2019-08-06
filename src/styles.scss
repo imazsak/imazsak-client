@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+}
+
+.header .spacer {
+  flex: 1 1 auto;
+}
+
+.main {
+  flex: 1 1 auto;
+  // flex: 1 0 auto; // use this to implement sticky footer
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.footer {
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.footer button {
+  font-size: 30px;
+  text-align: center;
+}
+
+.mat-drawer-backdrop {
+  position: fixed !important;
+}
