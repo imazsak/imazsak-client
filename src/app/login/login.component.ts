@@ -18,6 +18,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/home']);
+      }
+    });
+
     this.route.queryParams.pipe(
       filter(params => params.token),
       filter(params => params.refresh_token)

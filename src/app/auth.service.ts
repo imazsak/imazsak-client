@@ -14,6 +14,10 @@ export class AuthService {
     this.loadTokenFromLocalStorage();
   }
 
+  public isLoggedIn(): Observable<boolean> {
+    return this.getToken().pipe(map(token => !!token));
+  }
+
   public getToken(): Observable<string> {
     if (!!this.tokenData) {
       if (this.validateTokenExp(this.tokenData.token)) {
