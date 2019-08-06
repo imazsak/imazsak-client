@@ -5,9 +5,9 @@ import {
   CanActivateChild,
   CanLoad,
   Route,
+  Router,
   RouterStateSnapshot,
-  UrlSegment,
-  UrlTree
+  UrlSegment
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
@@ -18,24 +18,27 @@ import {map} from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isLoggedIn();
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.checkLogin();
   }
 
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isLoggedIn();
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.checkLogin();
   }
 
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.isLoggedIn();
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> {
+    return this.checkLogin();
+  }
+
+  private checkLogin(): Observable<boolean> {
+    return this.authService.isLoggedIn().pipe(map(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/login']);
+      }
+      return isLoggedIn;
+    }));
   }
 }
