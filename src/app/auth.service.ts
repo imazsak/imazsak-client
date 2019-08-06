@@ -39,7 +39,7 @@ export class AuthService {
   public logout() {
     this.tokenData = undefined;
     localStorage.removeItem('tokenData');
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   private refreshToken(): Observable<TokenData> {
@@ -47,7 +47,7 @@ export class AuthService {
     return this.http.post<TokenData>(AuthService.refreshUrl, data)
       .pipe(
         map(tokenData => {
-          this.tokenData = tokenData;
+          this.setTokenData(tokenData.token, tokenData.refreshToken);
           return tokenData;
         }) // todo error handler
       );
