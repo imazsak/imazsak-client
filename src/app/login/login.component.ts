@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
 
@@ -10,7 +10,11 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {
   }
 
   ngOnInit() {
@@ -19,12 +23,14 @@ export class LoginComponent implements OnInit {
       filter(params => params.refresh_token)
     ).subscribe(params => {
       this.authService.setTokenData(params.token, params.refresh_token);
+      this.router.navigate(['/home']);
     });
     this.route.queryParams.pipe(
       filter(params => params.error)
     ).subscribe(params => {
       const error = params.error;
-      // erro message
+      console.error(error);
+      // error message
     });
   }
 
