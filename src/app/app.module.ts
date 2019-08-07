@@ -12,8 +12,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
 import {StageInterceptor} from './stage.interceptor';
-import { HeaderComponent } from './header/header.component';
+import {HeaderComponent} from './header/header.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
@@ -36,6 +37,7 @@ const httpInterceptorProviders = [
     MatButtonModule,
     MatListModule,
     MatSidenavModule,
+    MatMenuModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
