@@ -3,12 +3,12 @@
   "name": "Imazsák",
   "icons": [
     {
-      "src": "assets/icon_192x192.png",
+      "src": "icon_192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
   "start_url": "/home",
   "display": "standalone",
-  "orientation": "landscape"
+  "orientation": "portrait"
 }
