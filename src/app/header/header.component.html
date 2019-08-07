@@ -1,0 +1,34 @@
+<header class="header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <span>{{title}}</span>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav mode="over" fixedInViewport="true" #sidenav>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <span class="spacer"></span>
+          <span>Menu</span>
+          <span class="spacer"></span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <mat-nav-list>
+        <a mat-list-item (click)="authService.logout()">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <p mat-line>Logout</p>
+        </a>
+      </mat-nav-list>
+
+    </mat-sidenav>
+  </mat-sidenav-container>
+</header>

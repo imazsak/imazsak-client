@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   groups = [];
 
-  constructor(public authService: AuthService, public groupService: GroupService) {
+  constructor(public groupService: GroupService) {
   }
 
   ngOnInit() {
