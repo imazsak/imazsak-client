@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -13,8 +14,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {StageInterceptor} from './stage.interceptor';
 import {HeaderComponent} from './header/header.component';
+import {SettingsButtonComponent} from './settings/settings-button.component';
+import {SettingsDialogComponent} from './settings/settings-dialog.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
@@ -26,10 +32,16 @@ const httpInterceptorProviders = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    SettingsButtonComponent,
+    SettingsDialogComponent
+  ],
+  entryComponents: [
+    SettingsDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
@@ -38,6 +50,9 @@ const httpInterceptorProviders = [
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
