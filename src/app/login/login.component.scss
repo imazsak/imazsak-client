@@ -8,10 +8,23 @@
   background-size: cover;
 }
 
+.logo {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-image: url("../../assets/icon-512x512.png");
+}
+
 .loginContainer .bottom {
   align-self: flex-end;
   padding: 10px 30px;
   text-align: center;
+  z-index: 100;
 }
 
 .btn {
