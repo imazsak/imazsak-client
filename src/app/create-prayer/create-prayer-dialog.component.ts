@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {GroupListData} from '../group.service';
 import {FormControl} from '@angular/forms';
+import {GroupListData} from '../imazsak.service';
 
 export interface CreatePrayDialogData {
   groups: GroupListData[];

@@ -18,6 +18,11 @@ export class ImazsakService {
     return this.http.post('/api/me', data);
   }
 
+  public listGroups(): Observable<GroupListData[]> {
+    const url = '/api/groups';
+    return this.http.get<GroupListData[]>(url);
+  }
+
   public createPrayer(data: CreatePrayerData): Observable<any> {
     return this.http.post('/api/prayers', data);
   }
@@ -25,6 +30,11 @@ export class ImazsakService {
 
 export interface MeData {
   name?: string;
+}
+
+export interface GroupListData {
+  id: string;
+  name: string;
 }
 
 export interface CreatePrayerData {

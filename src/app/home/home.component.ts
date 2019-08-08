@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {GroupService} from '../group.service';
+import {ImazsakService} from '../imazsak.service';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +10,11 @@ export class HomeComponent implements OnInit {
 
   groups = [];
 
-  constructor(public groupService: GroupService) {
+  constructor(public imazsak: ImazsakService) {
   }
 
   ngOnInit() {
-    this.groupService.listGroups().subscribe(groups => this.groups = groups);
+    this.imazsak.listGroups().subscribe(groups => this.groups = groups);
   }
 
 }

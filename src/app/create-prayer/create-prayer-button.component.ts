@@ -1,8 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {ImazsakService} from '../imazsak.service';
+import {GroupListData, ImazsakService} from '../imazsak.service';
 import {CreatePrayerDialogComponent} from './create-prayer-dialog.component';
-import {GroupListData} from '../group.service';
 
 
 @Component({
