@@ -17,8 +17,17 @@ export class ImazsakService {
   public saveMe(data: MeData): Observable<any> {
     return this.http.post('/api/me', data);
   }
+
+  public createPrayer(data: CreatePrayerData): Observable<any> {
+    return this.http.post('/api/prayers', data);
+  }
 }
 
 export interface MeData {
   name?: string;
+}
+
+export interface CreatePrayerData {
+  message: string;
+  groupIds: string[];
 }
