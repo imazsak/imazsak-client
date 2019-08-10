@@ -35,7 +35,7 @@ pipeline {
           }
           sshagent (credentials: ['imazsak-stage-vm']) {
             sh """
-              ssh -o StrictHostKeyChecking=no root@stage.imazsak.hu "eval $(aws ecr get-login --region eu-central-1 --no-include-email) && cd /opt/imazsak-stage && git pull && docker stack deploy --compose-file ./client/client.yml --with-registry-auth --prune client"
+              ssh -o StrictHostKeyChecking=no root@stage.imazsak.hu "eval \$(aws ecr get-login --region eu-central-1 --no-include-email) && cd /opt/imazsak-stage && git pull && docker stack deploy --compose-file ./client/client.yml --with-registry-auth --prune client"
             """
           }
         }
