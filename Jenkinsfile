@@ -23,6 +23,7 @@ pipeline {
         script {
           sshagent (credentials: ['github-jenkins-imazsak']) {
             sh """
+              rm -R infra || true
               GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git clone git@github.com:Ksisu/imazsak-stage-infra.git infra && cd infra
               sed -i "s|\\(image: rg.fr-par.scw.cloud/imazsak/imazsak-client\\).*|\\1:${env.GIT_COMMIT}|" ./client/client.yml
               git add ./client/client.yml
