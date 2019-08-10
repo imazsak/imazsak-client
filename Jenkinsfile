@@ -29,7 +29,7 @@ pipeline {
               git config user.email "ci@imazsak.hu"
               git config user.name "Jenkins"
               git commit -m "Upgrade client ${env.GIT_COMMIT}" || true
-              git push master
+              GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push git@github.com:Ksisu/imazsak-stage-infra.git master
             """
           }
           sshagent (credentials: ['imazsak-stage-vm']) {
