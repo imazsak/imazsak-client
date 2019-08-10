@@ -18,26 +18,5 @@ pipeline {
         }
       }
     }
-    stage('Stage deploy') {
-      steps {
-        script {
-          sshagent (credentials: ['github-jenkins-imazsak']) {
-            sh """
-              sed -i "s|\\(image: rg.fr-par.scw.cloud/imazsak/imazsak-client\\).*|\\1:${env.GIT_COMMIT}|" ./client/client.yml
-              git add ./client/client.yml
-              git config user.email "ci@imazsak.hu"
-              git config user.name "Jenkins"
-              git commit -m "Upgrade client ${env.GIT_COMMIT}" || true
-              git push git@github.com:Ksisu/imazsak-stage-infra.git master
-            """
-          }
-          sshagent (credentials: ['imazsak-stage-vm']) {
-            sh """
-              ssh -o StrictHostKeyChecking=no root@stage.imazsak.hu "cd /opt/imazsak-stage && git pull && docker stack deploy --compose-file ./client/client.yml --with-registry-auth --prune client"
-            """
-          }
-        }
-      }
-    }
   }
 }
