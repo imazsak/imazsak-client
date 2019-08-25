@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {publishReplay, refCount} from 'rxjs/operators';
 
 @Injectable({
@@ -58,6 +58,19 @@ export class ImazsakService {
   public createFeedback(data: CreateFeedbackData): Observable<any> {
     return this.http.post('/api/feedback', data);
   }
+
+  public listNotifications(): Observable<NotificationListData[]> {
+    const fakeData = [
+      {id: '', message: 'Message 1', createdAt: 1566772198150, meta: {isRead: false}},
+      {id: '', message: 'Message 2', createdAt: 1566772198150, meta: {isRead: false}},
+      {id: '', message: 'Message 3', createdAt: 1566772198150, meta: {isRead: true}},
+      {id: '', message: 'Message 4', createdAt: 1566772198150, meta: {isRead: true}},
+      {id: '', message: 'Message 5', createdAt: 1566772198150, meta: {isRead: true}},
+      {id: '', message: 'Message 6', createdAt: 1566772198150, meta: {isRead: true}}
+    ];
+    // return this.http.get<NotificationListData[]>('/api/me/notifications');
+    return of(fakeData);
+  }
 }
 
 export interface MeData {
@@ -82,4 +95,16 @@ export interface MyPrayerListData {
 
 export interface CreateFeedbackData {
   message: string;
+}
+
+export interface NotificationMeta {
+  isRead: boolean;
+  notificationType?: string;
+}
+
+export interface NotificationListData {
+  id: string;
+  message: string;
+  createdAt: number;
+  meta: NotificationMeta;
 }
