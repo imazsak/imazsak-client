@@ -54,6 +54,10 @@ export class ImazsakService {
     }
     return this.listMyPrayersCache;
   }
+
+  public createFeedback(data: CreateFeedbackData): Observable<any> {
+    return this.http.post('/api/feedback', data);
+  }
 }
 
 export interface MeData {
@@ -74,4 +78,8 @@ export interface MyPrayerListData {
   id: string;
   message: string;
   groupIds: string[];
+}
+
+export interface CreateFeedbackData {
+  message: string;
 }

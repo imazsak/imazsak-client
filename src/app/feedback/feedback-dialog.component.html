@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Feedback</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <textarea matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="10"
+              placeholder="Leave a comment"
+              [(ngModel)]="message"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button mat-button [mat-dialog-close]="message" cdkFocusInitial>Send</button>
+</div>
