@@ -1,0 +1,12 @@
+<div class="container">
+  <app-header [title]="'My prayers'"></app-header>
+  <div class="main">
+    <mat-nav-list>
+      <a mat-list-item href="#" *ngFor="let prayer of myPrayers">{{prayer.message  | slice:0:50}}</a>
+    </mat-nav-list>
+  </div>
+  <footer class="footer">
+    <app-create-prayer-button [groups]="groups"></app-create-prayer-button>
+    <button mat-button><i class="fas fa-praying-hands"></i></button>
+  </footer>
+</div>

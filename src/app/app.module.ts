@@ -25,6 +25,7 @@ import {SettingsButtonComponent} from './settings/settings-button.component';
 import {SettingsDialogComponent} from './settings/settings-dialog.component';
 import {CreatePrayerDialogComponent} from './create-prayer/create-prayer-dialog.component';
 import {CreatePrayerButtonComponent} from './create-prayer/create-prayer-button.component';
+import {MyPrayersComponent} from './my-prayers/my-prayers.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
@@ -41,6 +42,7 @@ const httpInterceptorProviders = [
     SettingsDialogComponent,
     CreatePrayerButtonComponent,
     CreatePrayerDialogComponent,
+    MyPrayersComponent,
   ],
   entryComponents: [
     SettingsDialogComponent,

@@ -38,6 +38,10 @@
           <i mat-list-icon class="fas fa-user-friends"></i>
           <p mat-line>Groups</p>
         </a>
+        <a mat-list-item routerLink="/my-prayers" routerLinkActive="active">
+          <i mat-list-icon class="fas fa-pray"></i>
+          <p mat-line>My prayers</p>
+        </a>
         <a mat-list-item (click)="authService.logout()">
           <i mat-list-icon class="fas fa-sign-out-alt"></i>
           <p mat-line>Logout</p>
