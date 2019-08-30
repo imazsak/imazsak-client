@@ -2,7 +2,7 @@
   <app-header [title]="'Groups'"></app-header>
   <div class="main">
     <mat-nav-list>
-      <a mat-list-item href="#{{group.id}}" *ngFor="let group of groups">{{group.name}}</a>
+      <a mat-list-item [routerLink]="['/groups', group.id]" *ngFor="let group of groups">{{group.name}}</a>
     </mat-nav-list>
   </div>
   <footer class="footer">
