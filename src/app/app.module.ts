@@ -19,7 +19,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
-import {StageInterceptor} from './stage.interceptor';
 import {HeaderComponent} from './header/header.component';
 import {SettingsButtonComponent} from './settings/settings-button.component';
 import {SettingsDialogComponent} from './settings/settings-dialog.component';
@@ -31,8 +30,7 @@ import {FeedbackDialogComponent} from './feedback/feedback-dialog.component';
 import {NotificationsComponent} from './notifications/notifications.component';
 
 const httpInterceptorProviders = [
-  {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-  {provide: HTTP_INTERCEPTORS, useClass: StageInterceptor, multi: true},
+  {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
 ];
 
 @NgModule({
