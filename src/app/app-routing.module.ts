@@ -7,6 +7,7 @@ import {MyPrayersComponent} from './my-prayers/my-prayers.component';
 import {NotificationsComponent} from './notifications/notifications.component';
 import {GroupComponent} from './group/group.component';
 import {MembersComponent} from './members/members.component';
+import {PrayersComponent} from './prayers/prayers.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'groups', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'groups/:id', component: GroupComponent, canActivate: [AuthGuard]},
   {path: 'groups/:id/members', component: MembersComponent, canActivate: [AuthGuard]},
+  {path: 'groups/:id/prayers', component: PrayersComponent, canActivate: [AuthGuard]},
   {path: 'my-prayers', component: MyPrayersComponent, canActivate: [AuthGuard]},
   {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},

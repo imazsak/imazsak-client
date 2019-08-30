@@ -71,6 +71,10 @@ export class ImazsakService {
     // return this.http.get<NotificationListData[]>('/api/me/notifications');
     return of(fakeData);
   }
+
+  public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
+    return this.http.get<GroupPrayerListData[]>(`/api/groups/${groupId}/prayers`);
+  }
 }
 
 export interface MeData {
@@ -107,4 +111,10 @@ export interface NotificationListData {
   message: string;
   createdAt: number;
   meta: NotificationMeta;
+}
+
+export interface GroupPrayerListData {
+  id: string;
+  userId: string;
+  message: string;
 }
