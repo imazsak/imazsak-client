@@ -4,7 +4,7 @@
     <mat-nav-list>
       <mat-list-item *ngFor="let prayer of prayers">
         <h4 mat-line>{{prayer.message}}</h4>
-        <p mat-line> {{prayer.userId}}</p> <!-- TODO: user name -->
+        <p mat-line> {{prayer.userId | userName:members}}</p>
       </mat-list-item>
     </mat-nav-list>
   </div>

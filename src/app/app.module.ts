@@ -31,6 +31,7 @@ import {NotificationsComponent} from './notifications/notifications.component';
 import {GroupComponent} from './group/group.component';
 import {MembersComponent} from './members/members.component';
 import {PrayersComponent} from './prayers/prayers.component';
+import {UserNamePipe} from './user-name.pipe';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -52,7 +53,8 @@ const httpInterceptorProviders = [
     NotificationsComponent,
     GroupComponent,
     MembersComponent,
-    PrayersComponent
+    PrayersComponent,
+    UserNamePipe
   ],
   entryComponents: [
     SettingsDialogComponent,

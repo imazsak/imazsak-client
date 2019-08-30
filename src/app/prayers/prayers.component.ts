@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {GroupListData, GroupPrayerListData, ImazsakService} from '../imazsak.service';
+import {Component, OnInit} from '@angular/core';
+import {GroupListData, GroupMemberListData, GroupPrayerListData, ImazsakService} from '../imazsak.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class PrayersComponent implements OnInit {
   group: GroupListData = {id: '', name: ''};
   prayers: GroupPrayerListData[] = [];
+  members: GroupMemberListData[] = [];
 
   constructor(private route: ActivatedRoute, private imazsak: ImazsakService) {
   }
@@ -20,5 +21,6 @@ export class PrayersComponent implements OnInit {
       this.group = groups.find(e => e.id === id);
     });
     this.imazsak.listGroupPrayers(id).subscribe(prayers => this.prayers = prayers);
+    this.imazsak.listGroupMembers(id).subscribe(members => this.members = members);
   }
 }

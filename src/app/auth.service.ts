@@ -56,7 +56,7 @@ export class AuthService {
         map(tokenData => {
           this.setTokenData(tokenData.token, tokenData.refreshToken);
           return tokenData;
-        }) // todo error handler
+        })
       );
   }
 
