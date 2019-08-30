@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -24,7 +24,14 @@ export class AuthService {
       if (this.validateTokenExp(this.tokenData.token)) {
         return of(this.tokenData.token);
       } else {
-        return this.refreshToken().pipe(map(tokenData => tokenData.token));
+        return this.refreshToken()
+          .pipe(
+            map(tokenData => tokenData.token),
+            catchError(_ => {
+              this.logout();
+              return of(undefined);
+            })
+          );
       }
     } else {
       return of(undefined);
