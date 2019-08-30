@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GroupListData, ImazsakService} from '../imazsak.service';
+import {GroupListData, GroupMemberListData, ImazsakService} from '../imazsak.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,8 +8,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
-  group: GroupListData;
-  // todo members
+  group: GroupListData = {id: '', name: ''};
+  members: GroupMemberListData[] = [];
 
   constructor(private route: ActivatedRoute, private imazsak: ImazsakService) {
   }
@@ -19,5 +19,6 @@ export class MembersComponent implements OnInit {
     this.imazsak.listGroups().subscribe(groups => {
       this.group = groups.find(e => e.id === id);
     });
+    this.imazsak.listGroupMembers(id).subscribe(members => this.members = members);
   }
 }

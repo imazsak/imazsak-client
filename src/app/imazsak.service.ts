@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {publishReplay, refCount} from 'rxjs/operators';
+import {map, publishReplay, refCount} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +75,12 @@ export class ImazsakService {
   public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
     return this.http.get<GroupPrayerListData[]>(`/api/groups/${groupId}/prayers`);
   }
+
+  public listGroupMembers(groupId: string): Observable<GroupMemberListData[]> {
+    return this.http.get<GroupMemberListData[]>(`/api/groups/${groupId}/members`)
+      .pipe(map(members => members.filter(member => !!member.name)));
+  }
+
 }
 
 export interface MeData {
@@ -117,4 +123,9 @@ export interface GroupPrayerListData {
   id: string;
   userId: string;
   message: string;
+}
+
+export interface GroupMemberListData {
+  id: string;
+  name?: string;
 }
