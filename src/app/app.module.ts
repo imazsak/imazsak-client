@@ -29,6 +29,7 @@ import {FeedbackButtonComponent} from './feedback/feedback-button.component';
 import {FeedbackDialogComponent} from './feedback/feedback-dialog.component';
 import {NotificationsComponent} from './notifications/notifications.component';
 import {GroupComponent} from './group/group.component';
+import {MembersComponent} from './members/members.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -48,7 +49,8 @@ const httpInterceptorProviders = [
     FeedbackButtonComponent,
     FeedbackDialogComponent,
     NotificationsComponent,
-    GroupComponent
+    GroupComponent,
+    MembersComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
