@@ -8,6 +8,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./prayers.component.scss']
 })
 export class PrayersComponent implements OnInit {
+  groupId: string;
+
   group: GroupListData = {id: '', name: ''};
   prayers: GroupPrayerListData[] = [];
   members: GroupMemberListData[] = [];
@@ -16,11 +18,15 @@ export class PrayersComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.groupId = this.route.snapshot.paramMap.get('id');
     this.imazsak.listGroups().subscribe(groups => {
-      this.group = groups.find(e => e.id === id);
+      this.group = groups.find(e => e.id === this.groupId);
     });
-    this.imazsak.listGroupPrayers(id).subscribe(prayers => this.prayers = prayers);
-    this.imazsak.listGroupMembers(id).subscribe(members => this.members = members);
+    this.loadPrayers();
+    this.imazsak.listGroupMembers(this.groupId).subscribe(members => this.members = members);
+  }
+
+  loadPrayers() {
+    this.imazsak.listGroupPrayers(this.groupId).subscribe(prayers => this.prayers = prayers);
   }
 }

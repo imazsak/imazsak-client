@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {GroupListData, ImazsakService} from '../imazsak.service';
 import {CreatePrayerDialogComponent} from './create-prayer-dialog.component';
@@ -11,6 +11,7 @@ import {CreatePrayerDialogComponent} from './create-prayer-dialog.component';
 export class CreatePrayerButtonComponent {
 
   @Input() groups: GroupListData[];
+  @Output() createdPrayer = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog, private imazsak: ImazsakService) {
   }
@@ -21,7 +22,7 @@ export class CreatePrayerButtonComponent {
 
     dialogRef.afterClosed().subscribe(data => {
       if (!!data) {
-        this.imazsak.createPrayer(data).subscribe();
+        this.imazsak.createPrayer(data).subscribe(_ => this.createdPrayer.emit({}));
       }
     });
   }
