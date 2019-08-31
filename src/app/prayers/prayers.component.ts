@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupListData, GroupMemberListData, GroupPrayerListData, ImazsakService} from '../imazsak.service';
 import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {PrayDialogComponent} from '../pray-dialog/pray-dialog.component';
 
 @Component({
   selector: 'app-prayers',
@@ -14,7 +16,7 @@ export class PrayersComponent implements OnInit {
   prayers: GroupPrayerListData[] = [];
   members: GroupMemberListData[] = [];
 
-  constructor(private route: ActivatedRoute, private imazsak: ImazsakService) {
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private imazsak: ImazsakService) {
   }
 
   ngOnInit() {
@@ -28,5 +30,11 @@ export class PrayersComponent implements OnInit {
 
   loadPrayers() {
     this.imazsak.listGroupPrayers(this.groupId).subscribe(prayers => this.prayers = prayers);
+  }
+
+  openPrayDialog(prayer: GroupPrayerListData) {
+    this.dialog.open(PrayDialogComponent, {
+      data: {prayer, groupId: this.groupId}
+    });
   }
 }

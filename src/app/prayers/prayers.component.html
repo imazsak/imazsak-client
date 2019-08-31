@@ -2,7 +2,7 @@
   <app-header [title]="group.name"></app-header>
   <div class="main">
     <mat-nav-list>
-      <mat-list-item *ngFor="let prayer of prayers">
+      <mat-list-item *ngFor="let prayer of prayers" (click)="openPrayDialog(prayer)">
         <h4 mat-line>{{prayer.message}}</h4>
         <p mat-line> {{prayer.userId | userName:members}}</p>
       </mat-list-item>

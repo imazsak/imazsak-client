@@ -81,6 +81,10 @@ export class ImazsakService {
       .pipe(map(members => members.filter(member => !!member.name)));
   }
 
+  public sendPray(groupId: string, prayerId: string): Observable<any> {
+    return this.http.post(`/api/groups/${groupId}/prayers/${prayerId}/pray`, {});
+  }
+
 }
 
 export interface MeData {

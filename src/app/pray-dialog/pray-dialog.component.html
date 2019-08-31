@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{data.prayer.userId | userName:members}}</h1>
+<div mat-dialog-content>{{data.prayer.message}}</div>
+<div mat-dialog-actions>
+  <button *ngIf="onlyOne" mat-button (click)="dialogRef.close()">Close</button>
+  <button *ngIf="!onlyOne" mat-button (click)="loadNextPrayer()">Skip</button>
+  <button mat-button (click)="pray()" cdkFocusInitial>Pray</button>
+</div>
