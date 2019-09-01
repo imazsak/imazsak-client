@@ -4,8 +4,7 @@ import {PrayDialogComponent} from '../pray-dialog/pray-dialog.component';
 
 @Component({
   selector: 'app-pray-button',
-  templateUrl: './pray-button.component.html',
-  styleUrls: ['./pray-button.component.scss']
+  templateUrl: './pray-button.component.html'
 })
 export class PrayButtonComponent {
 

@@ -11,8 +11,7 @@ export interface PrayDialogData {
 
 @Component({
   selector: 'app-pray-dialog',
-  templateUrl: './pray-dialog.component.html',
-  styleUrls: ['./pray-dialog.component.scss']
+  templateUrl: './pray-dialog.component.html'
 })
 export class PrayDialogComponent implements OnInit {
 

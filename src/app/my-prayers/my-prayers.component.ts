@@ -3,8 +3,7 @@ import {ImazsakService} from '../imazsak.service';
 
 @Component({
   selector: 'app-my-prayers',
-  templateUrl: './my-prayers.component.html',
-  styleUrls: ['./my-prayers.component.scss']
+  templateUrl: './my-prayers.component.html'
 })
 export class MyPrayersComponent implements OnInit {
 

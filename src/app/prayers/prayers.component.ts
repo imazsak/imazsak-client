@@ -6,8 +6,7 @@ import {PrayDialogComponent} from '../pray-dialog/pray-dialog.component';
 
 @Component({
   selector: 'app-prayers',
-  templateUrl: './prayers.component.html',
-  styleUrls: ['./prayers.component.scss']
+  templateUrl: './prayers.component.html'
 })
 export class PrayersComponent implements OnInit {
   groupId: string;

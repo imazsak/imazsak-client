@@ -4,11 +4,10 @@ import {GroupListData, ImazsakService} from '../imazsak.service';
 
 @Component({
   selector: 'app-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss']
+  templateUrl: './group.component.html'
 })
 export class GroupComponent implements OnInit {
-  model: GroupListData;
+  model: GroupListData = {id: '', name: ''};
 
   constructor(private route: ActivatedRoute, private imazsak: ImazsakService) {
   }

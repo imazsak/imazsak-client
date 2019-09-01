@@ -4,8 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-members',
-  templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss']
+  templateUrl: './members.component.html'
 })
 export class MembersComponent implements OnInit {
   group: GroupListData = {id: '', name: ''};
