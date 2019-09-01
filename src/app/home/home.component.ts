@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ImazsakService} from '../imazsak.service';
+import {GroupListData, ImazsakService} from '../imazsak.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +7,17 @@ import {ImazsakService} from '../imazsak.service';
 })
 export class HomeComponent implements OnInit {
 
-  groups = [];
+  groups: GroupListData[] = [];
+  groupIds: string[] = [];
 
   constructor(public imazsak: ImazsakService) {
   }
 
   ngOnInit() {
-    this.imazsak.listGroups().subscribe(groups => this.groups = groups);
+    this.imazsak.listGroups().subscribe(groups => {
+      this.groups = groups;
+      this.groupIds = this.groups.map(g => g.id);
+    });
   }
 
 }

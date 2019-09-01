@@ -58,9 +58,10 @@ export class PrayDialogComponent implements OnInit {
       this.imazsak.loadNext10Prayer(this.data.groupIds).subscribe(prayers => {
         if (prayers.length === 0) {
           this.dialogRef.close();
+        } else {
+          this.prayerList = prayers;
+          this.prayer = this.prayerList.shift();
         }
-        this.prayerList = prayers;
-        this.prayer = this.prayerList.shift();
       });
     } else {
       this.prayer = this.prayerList.shift();
