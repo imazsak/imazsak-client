@@ -8,14 +8,14 @@ import {PrayDialogComponent} from '../pray-dialog/pray-dialog.component';
 })
 export class PrayButtonComponent {
 
-  @Input() groupId: string;
+  @Input() groupIds: string[];
 
   constructor(public dialog: MatDialog) {
   }
 
   openPrayDialog() {
     this.dialog.open(PrayDialogComponent, {
-      data: {groupId: this.groupId}
+      data: {groupIds: this.groupIds}
     });
   }
 

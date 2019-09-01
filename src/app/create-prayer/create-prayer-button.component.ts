@@ -15,6 +15,7 @@ export class CreatePrayerButtonComponent {
 
   constructor(public dialog: MatDialog, private imazsak: ImazsakService) {
   }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CreatePrayerDialogComponent, {
       data: {groups: this.groups}

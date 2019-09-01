@@ -131,6 +131,7 @@ export interface GroupPrayerListData {
   id: string;
   userId: string;
   message: string;
+  groupId?: string;
 }
 
 export interface GroupMemberListData {

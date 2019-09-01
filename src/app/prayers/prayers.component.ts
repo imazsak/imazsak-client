@@ -33,7 +33,7 @@ export class PrayersComponent implements OnInit {
 
   openPrayDialog(prayer: GroupPrayerListData) {
     this.dialog.open(PrayDialogComponent, {
-      data: {prayer, groupId: this.groupId}
+      data: {prayer, groupIds: [this.groupId]}
     });
   }
 }

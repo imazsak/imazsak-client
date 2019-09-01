@@ -13,6 +13,7 @@ export class SettingsDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<SettingsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
 
 }

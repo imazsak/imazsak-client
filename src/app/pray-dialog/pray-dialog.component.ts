@@ -5,7 +5,7 @@ import {GroupMemberListData, GroupPrayerListData, ImazsakService} from '../imazs
 
 export interface PrayDialogData {
   prayer?: GroupPrayerListData;
-  groupId: string;
+  groupIds: string[];
 }
 
 
@@ -18,7 +18,7 @@ export class PrayDialogComponent implements OnInit {
   isOnlyOne = true;
   members: GroupMemberListData[] = [];
   prayerList: GroupPrayerListData[] = [];
-  prayer: GroupPrayerListData = {id: '', userId: '', message: '', };
+  prayer: GroupPrayerListData = {id: '', userId: '', message: ''};
 
   constructor(
     public dialogRef: MatDialogRef<PrayDialogComponent>,
@@ -34,7 +34,12 @@ export class PrayDialogComponent implements OnInit {
   }
 
   pray() {
-    this.imazsak.sendPray(this.data.groupId, this.prayer.id).subscribe(_ => {
+    if (!!this.prayer.groupId) {
+      console.error('Missing groupId from prayer!');
+      this.dialogRef.close();
+      return;
+    }
+    this.imazsak.sendPray(this.prayer.groupId, this.prayer.id).subscribe(_ => {
       if (this.isOnlyOne) {
         this.dialogRef.close();
       } else {
@@ -46,22 +51,28 @@ export class PrayDialogComponent implements OnInit {
   loadNextPrayer() {
     if (this.isOnlyOne) {
       this.prayer = this.data.prayer;
-    } else if (!!this.data.groupId) {
-      if (this.prayerList.length === 0) {
-        this.imazsak.loadNext10Prayer([this.data.groupId]).subscribe(prayers => {
-          this.prayerList = prayers;
-          this.prayer = this.prayerList.shift();
-        });
-      } else {
-        this.prayer = this.prayerList.shift();
+      if (!this.prayer.groupId && !!this.data.groupIds[0]) {
+        this.prayer.groupId = this.data.groupIds[0];
       }
+    } else if (this.prayerList.length === 0) {
+      this.imazsak.loadNext10Prayer(this.data.groupIds).subscribe(prayers => {
+        if (prayers.length === 0) {
+          this.dialogRef.close();
+        }
+        this.prayerList = prayers;
+        this.prayer = this.prayerList.shift();
+      });
     } else {
-      console.log('load prayer from all');
-      // todo laod from all
+      this.prayer = this.prayerList.shift();
     }
   }
 
   loadGroupMembers() {
-    this.imazsak.listGroupMembers(this.data.groupId).subscribe(members => this.members = members);
+    const self = this;
+    this.data.groupIds.forEach(groupId => {
+      self.imazsak.listGroupMembers(groupId).subscribe(members => {
+        self.members = self.members.concat(members);
+      });
+    });
   }
 }
