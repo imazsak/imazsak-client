@@ -4,7 +4,7 @@ import {GroupMemberListData, GroupPrayerListData, ImazsakService} from '../imazs
 
 
 export interface PrayDialogData {
-  prayer: GroupPrayerListData;
+  prayer?: GroupPrayerListData;
   groupId: string;
 }
 
@@ -16,15 +16,18 @@ export interface PrayDialogData {
 })
 export class PrayDialogComponent implements OnInit {
 
-  onlyOne = true;
+  isOnlyOne = true;
   members: GroupMemberListData[] = [];
+  prayerList: GroupPrayerListData[] = [];
+  prayer: GroupPrayerListData = {id: '', userId: '', message: '', };
 
   constructor(
     public dialogRef: MatDialogRef<PrayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PrayDialogData,
     private imazsak: ImazsakService
   ) {
-    this.onlyOne = !!data.prayer;
+    this.isOnlyOne = !!data.prayer;
+    this.loadNextPrayer();
     this.loadGroupMembers();
   }
 
@@ -32,8 +35,8 @@ export class PrayDialogComponent implements OnInit {
   }
 
   pray() {
-    this.imazsak.sendPray(this.data.groupId, this.data.prayer.id).subscribe(_ => {
-      if (this.onlyOne) {
+    this.imazsak.sendPray(this.data.groupId, this.prayer.id).subscribe(_ => {
+      if (this.isOnlyOne) {
         this.dialogRef.close();
       } else {
         this.loadNextPrayer();
@@ -42,9 +45,17 @@ export class PrayDialogComponent implements OnInit {
   }
 
   loadNextPrayer() {
-    if (!!this.data.groupId) {
-      console.log('load prayer from group');
-      // todo load from group
+    if (this.isOnlyOne) {
+      this.prayer = this.data.prayer;
+    } else if (!!this.data.groupId) {
+      if (this.prayerList.length === 0) {
+        this.imazsak.loadNext10Prayer([this.data.groupId]).subscribe(prayers => {
+          this.prayerList = prayers;
+          this.prayer = this.prayerList.shift();
+        });
+      } else {
+        this.prayer = this.prayerList.shift();
+      }
     } else {
       console.log('load prayer from all');
       // todo laod from all

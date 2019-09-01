@@ -33,6 +33,7 @@ import {MembersComponent} from './members/members.component';
 import {PrayersComponent} from './prayers/prayers.component';
 import {UserNamePipe} from './user-name.pipe';
 import {PrayDialogComponent} from './pray-dialog/pray-dialog.component';
+import {PrayButtonComponent} from './pray-button/pray-button.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -56,7 +57,8 @@ const httpInterceptorProviders = [
     MembersComponent,
     PrayersComponent,
     UserNamePipe,
-    PrayDialogComponent
+    PrayDialogComponent,
+    PrayButtonComponent
   ],
   entryComponents: [
     SettingsDialogComponent,

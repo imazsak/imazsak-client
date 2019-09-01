@@ -2,12 +2,12 @@
   <app-header [title]="model.name"></app-header>
   <div class="main">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/groups', model.id, 'members']">Members</a>
       <a mat-list-item [routerLink]="['/groups', model.id, 'prayers']">Prayers</a>
+      <a mat-list-item [routerLink]="['/groups', model.id, 'members']">Members</a>
     </mat-nav-list>
   </div>
   <footer class="footer">
     <app-create-prayer-button [groups]="[model]"></app-create-prayer-button>
-    <button mat-button><i class="fas fa-praying-hands"></i></button>
+    <app-pray-button [groupId]="model.id"></app-pray-button>
   </footer>
 </div>

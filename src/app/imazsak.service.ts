@@ -85,6 +85,10 @@ export class ImazsakService {
     return this.http.post(`/api/groups/${groupId}/prayers/${prayerId}/pray`, {});
   }
 
+  public loadNext10Prayer(groupIds: string[]) {
+    return this.http.post<GroupPrayerListData[]>(`/api/prayers/next-10`, {ids: groupIds});
+  }
+
 }
 
 export interface MeData {

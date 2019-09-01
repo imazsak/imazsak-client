@@ -10,6 +10,6 @@
   </div>
   <footer class="footer">
     <app-create-prayer-button [groups]="[group]" (createdPrayer)="loadPrayers()"></app-create-prayer-button>
-    <button mat-button><i class="fas fa-praying-hands"></i></button>
+    <app-pray-button [groupId]="groupId"></app-pray-button>
   </footer>
 </div>
