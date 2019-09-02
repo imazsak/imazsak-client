@@ -109,6 +109,7 @@ export interface MyPrayerListData {
   id: string;
   message: string;
   groupIds: string[];
+  prayCount: number;
 }
 
 export interface CreateFeedbackData {

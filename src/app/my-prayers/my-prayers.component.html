@@ -2,11 +2,16 @@
   <app-header [title]="'My prayers'"></app-header>
   <div class="main">
     <mat-nav-list>
-      <a mat-list-item href="#" *ngFor="let prayer of myPrayers">{{prayer.message  | slice:0:50}}</a>
+      <mat-list-item *ngFor="let prayer of myPrayers">
+        <h4 mat-line>{{prayer.message  | slice:0:50}}</h4>
+        <p mat-line class="prayer-stat-line">
+          <i class="fas fa-praying-hands"></i> {{prayer.prayCount}}
+        </p>
+      </mat-list-item>
     </mat-nav-list>
   </div>
   <footer class="footer">
     <app-create-prayer-button [groups]="groups"></app-create-prayer-button>
-    <app-pray-button [groupIds]="groups"></app-pray-button>
+    <app-pray-button [groupIds]="groupIds"></app-pray-button>
   </footer>
 </div>
