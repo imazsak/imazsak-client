@@ -34,7 +34,7 @@ export class PrayDialogComponent implements OnInit {
   }
 
   pray() {
-    if (!!this.prayer.groupId) {
+    if (!this.prayer.groupId) {
       console.error('Missing groupId from prayer!');
       this.dialogRef.close();
       return;
