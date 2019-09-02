@@ -5,6 +5,7 @@
       <mat-list-item *ngFor="let prayer of myPrayers">
         <h4 mat-line>{{prayer.message  | slice:0:50}}</h4>
         <p mat-line class="prayer-stat-line">
+          <i class="far fa-calendar"></i> {{prayer.createdAt | date}} &nbsp;
           <i class="fas fa-praying-hands"></i> {{prayer.prayCount}}
         </p>
       </mat-list-item>
