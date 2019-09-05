@@ -89,6 +89,11 @@ export class ImazsakService {
     return this.http.post<GroupPrayerListData[]>(`/api/prayers/next-10`, {ids: groupIds});
   }
 
+  public closePrayer(data: ClosePrayerRequest): Observable<any> {
+    this.listMyPrayersCache = null;
+    return this.http.post('/api/prayers/close', data);
+  }
+
 }
 
 export interface MeData {
@@ -139,4 +144,9 @@ export interface GroupPrayerListData {
 export interface GroupMemberListData {
   id: string;
   name?: string;
+}
+
+export interface ClosePrayerRequest {
+  id: string;
+  message?: string;
 }

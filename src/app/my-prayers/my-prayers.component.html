@@ -8,6 +8,9 @@
           <span><i class="fas fa-praying-hands"></i> {{prayer.prayCount}}</span>
           <span><i class="far fa-calendar"></i> {{prayer.createdAt | ago}}</span>
         </p>
+        <button mat-icon-button (click)="openCloseDialog(prayer.id)">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-list-item>
     </mat-nav-list>
   </div>
