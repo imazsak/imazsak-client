@@ -20,6 +20,10 @@ export class MyPrayersComponent implements OnInit {
       this.groups = groups;
       this.groupIds = this.groups.map(g => g.id);
     });
+    this.loadMyPrayers();
+  }
+
+  loadMyPrayers() {
     this.imazsak.listMyPrayers().subscribe(myPrayers => this.myPrayers = myPrayers);
   }
 

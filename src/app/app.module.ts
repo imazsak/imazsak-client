@@ -34,6 +34,7 @@ import {PrayersComponent} from './prayers/prayers.component';
 import {UserNamePipe} from './user-name.pipe';
 import {PrayDialogComponent} from './pray-dialog/pray-dialog.component';
 import {PrayButtonComponent} from './pray-button/pray-button.component';
+import { AgoPipe } from './ago.pipe';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -58,7 +59,8 @@ const httpInterceptorProviders = [
     PrayersComponent,
     UserNamePipe,
     PrayDialogComponent,
-    PrayButtonComponent
+    PrayButtonComponent,
+    AgoPipe
   ],
   entryComponents: [
     SettingsDialogComponent,

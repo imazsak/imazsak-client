@@ -41,7 +41,7 @@ export class ImazsakService {
   }
 
   public createPrayer(data: CreatePrayerData): Observable<any> {
-    this.listGroupsCache = null;
+    this.listMyPrayersCache = null;
     return this.http.post('/api/prayers', data);
   }
 
