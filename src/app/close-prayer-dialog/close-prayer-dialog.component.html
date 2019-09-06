@@ -1,8 +1,16 @@
 <h1 mat-dialog-title>Close prayer</h1>
-<div mat-dialog-content>
-  Are you sure?
+<div mat-dialog-content style="overflow: unset">
+  <mat-form-field>
+    <textarea matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="10"
+              [(ngModel)]="message"></textarea>
+    <mat-hint>Message to everyone who prayed for this</mat-hint>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button (click)="dialogRef.close(true)" cdkFocusInitial>Close Prayer</button>
+  <button mat-button (click)="close(false)">Cancel</button>
+  <button mat-button (click)="close(true)" cdkFocusInitial>Close Prayer</button>
 </div>
