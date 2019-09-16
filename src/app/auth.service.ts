@@ -23,7 +23,7 @@ export class AuthService {
     if (!!this.tokenData) {
       if (this.validateTokenExp(this.tokenData.token)) {
         return of(this.tokenData.token);
-      } else {
+      } else if (this.validateTokenExp(this.tokenData.refreshToken)) {
         return this.refreshToken()
           .pipe(
             map(tokenData => tokenData.token),
@@ -32,6 +32,10 @@ export class AuthService {
               return of(undefined);
             })
           );
+      } else {
+        this.tokenData = undefined;
+        localStorage.removeItem('tokenData');
+        return of(undefined);
       }
     } else {
       return of(undefined);
