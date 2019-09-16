@@ -8,7 +8,7 @@ export class UserNamePipe implements PipeTransform {
 
   transform(id: string, users: GroupMemberListData[]): any {
     const maybeUser = users.find(u => u.id === id && !!u.name);
-    return !!maybeUser ? maybeUser.name : 'Anonymous';
+    return !!maybeUser ? maybeUser.name : 'Névtelen';
   }
 
 }

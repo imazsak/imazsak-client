@@ -1,10 +1,10 @@
-<h1 mat-dialog-title>Settings</h1>
+<h1 mat-dialog-title>Beállítások</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="data.name">
+    <input matInput placeholder="Név" [(ngModel)]="data.name">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+  <button mat-button (click)="dialogRef.close()">Mégse</button>
+  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Mentés</button>
 </div>

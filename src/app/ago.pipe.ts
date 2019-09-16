@@ -14,16 +14,16 @@ export class AgoPipe implements PipeTransform {
     const d = 24 * h;
     if (agoMillis < 10 * s) {
       const sec = Math.ceil(agoMillis / s);
-      return `${sec}s`;
+      return `${sec}mp`;
     } else if (agoMillis < 45 * m) {
       const min = Math.ceil(agoMillis / m);
-      return `${min}m`;
+      return `${min}p`;
     } else if (agoMillis < 20 * h) {
       const hour = Math.ceil(agoMillis / h);
-      return `${hour}h`;
+      return `${hour}ó`;
     } else {
       const day = Math.ceil(agoMillis / d);
-      return `${day}d`;
+      return `${day}n`;
     }
   }
 

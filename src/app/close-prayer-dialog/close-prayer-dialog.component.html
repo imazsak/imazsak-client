@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Close prayer</h1>
-<div mat-dialog-content style="overflow: unset">
+<h1 mat-dialog-title>Imaszándék lezárása</h1>
+<div mat-dialog-content style="overflow: unset; padding-bottom: 10px">
   <mat-form-field>
     <textarea matInput
               cdkTextareaAutosize
@@ -7,10 +7,10 @@
               cdkAutosizeMinRows="1"
               cdkAutosizeMaxRows="10"
               [(ngModel)]="message"></textarea>
-    <mat-hint>Message to everyone who prayed for this</mat-hint>
+    <mat-hint>Üzenet azoknak akik imádkoztak ezért a szándékért</mat-hint>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="close(false)">Cancel</button>
-  <button mat-button (click)="close(true)" cdkFocusInitial>Close Prayer</button>
+  <button mat-button (click)="close(false)">Mégse</button>
+  <button mat-button (click)="close(true)" cdkFocusInitial>Lezárás</button>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header [title]="'Groups'"></app-header>
+  <app-header [title]="'Közösségeim'"></app-header>
   <div class="main">
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/groups', group.id]" *ngFor="let group of groups">{{group.name}}</a>

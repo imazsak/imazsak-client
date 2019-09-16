@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header [title]="'Notifications'"></app-header>
+  <app-header [title]="'Értesítések'"></app-header>
   <div class="main">
     <mat-nav-list>
       <mat-list-item *ngFor="let notification of notifications" [ngClass]="{'new': !notification.meta.isRead}">

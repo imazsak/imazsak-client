@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{prayer.userId | userName:members}}</h1>
 <div mat-dialog-content>{{prayer.message}}</div>
 <div mat-dialog-actions>
-  <button *ngIf="isOnlyOne" mat-button (click)="dialogRef.close()">Close</button>
-  <button *ngIf="!isOnlyOne" mat-button (click)="loadNextPrayer()">Skip</button>
-  <button mat-button (click)="pray()" cdkFocusInitial>Pray</button>
+  <button *ngIf="isOnlyOne" mat-button (click)="dialogRef.close()">Bezárás</button>
+  <button *ngIf="!isOnlyOne" mat-button (click)="loadNextPrayer()">Következő</button>
+  <button mat-button (click)="pray()" cdkFocusInitial>Imádkozom érte</button>
 </div>
