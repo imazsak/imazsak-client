@@ -1,6 +1,8 @@
 <div class="container">
   <app-header [title]="'Imaszándékaim'"></app-header>
-  <div class="main">
+  <app-empty-placeholder class="main" *ngIf="groups.length === 0"
+                         [text]="'Itt tudod majd megnézni az imaszándékaidat, miután csatlakoztál legalább egy közösséghez!'"></app-empty-placeholder>
+  <div class="main" *ngIf="groups.length !== 0">
     <mat-nav-list>
       <mat-list-item *ngFor="let prayer of myPrayers">
         <h4 mat-line>{{prayer.message  | slice:0:50}}</h4>
@@ -14,7 +16,7 @@
       </mat-list-item>
     </mat-nav-list>
   </div>
-  <footer class="footer">
+  <footer class="footer" *ngIf="groups.length !== 0">
     <app-create-prayer-button [groups]="groups" (createdPrayer)="loadMyPrayers();"></app-create-prayer-button>
     <app-pray-button [groupIds]="groupIds"></app-pray-button>
   </footer>

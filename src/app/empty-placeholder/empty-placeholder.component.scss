@@ -1,0 +1,24 @@
+.empty-container {
+  height: 100%;
+  position: relative;
+
+  text-align: center;
+  color: darkgray;
+  background-color: #ebebeb;
+
+  font-size: large;
+}
+
+.empty-screen {
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon {
+  color: lightgrey;
+  font-size: 80px;
+}

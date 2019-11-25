@@ -1,11 +1,13 @@
 <div class="container">
   <app-header [title]="'Közösségeim'"></app-header>
-  <div class="main">
+  <app-empty-placeholder class="main" *ngIf="groups.length === 0"
+                         [text]="'Még nem csatlakoztál egy közösséghez sem!'"></app-empty-placeholder>
+  <div class="main" *ngIf="groups.length !== 0">
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/groups', group.id]" *ngFor="let group of groups">{{group.name}}</a>
     </mat-nav-list>
   </div>
-  <footer class="footer">
+  <footer class="footer" *ngIf="groups.length !== 0">
     <app-create-prayer-button [groups]="groups"></app-create-prayer-button>
     <app-pray-button [groupIds]="groupIds"></app-pray-button>
   </footer>
