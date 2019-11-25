@@ -6,7 +6,7 @@ RUN npm i
 COPY . .
 RUN npm run build
 
-FROM nginx:1.17.2
+FROM nginx:1.17.6
 RUN rm -rf /usr/share/nginx/html/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist/imazsak-client /usr/share/nginx/html
