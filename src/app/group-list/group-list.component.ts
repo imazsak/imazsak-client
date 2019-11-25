@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {GroupListData, ImazsakService} from '../imazsak.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-group-list',
+  templateUrl: './group-list.component.html'
 })
-export class HomeComponent implements OnInit {
+export class GroupListComponent implements OnInit {
 
   groups: GroupListData[] = [];
   groupIds: string[] = [];
