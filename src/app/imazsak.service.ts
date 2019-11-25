@@ -94,6 +94,16 @@ export class ImazsakService {
     return this.http.post('/api/prayers/close', data);
   }
 
+  public getJoinToGroupToken(groupId: string): Observable<TokenData> {
+    return this.http.post<TokenData>(`/api/groups/${groupId}/create-join-token`, {});
+  }
+
+  public joinToGroup(token: string): Observable<any> {
+    this.listGroupsCache = null;
+    const data = {token} as TokenData;
+    return this.http.post<any>(`/api/groups/join`, data);
+  }
+
 }
 
 export interface MeData {
@@ -149,4 +159,8 @@ export interface GroupMemberListData {
 export interface ClosePrayerRequest {
   id: string;
   message?: string;
+}
+
+export interface TokenData {
+  token: string;
 }

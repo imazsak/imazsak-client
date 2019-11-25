@@ -22,7 +22,8 @@ export class GroupComponent implements OnInit {
   }
 
   openJoinDialog(): void {
-    const code = 'TODO'; // TODO
-    this.dialog.open(ShowJoinCodeDialogComponent, {data: {code}});
+    this.imazsak.getJoinToGroupToken(this.model.id).subscribe(data => {
+      this.dialog.open(ShowJoinCodeDialogComponent, {data: {code: data.token}});
+    });
   }
 }
