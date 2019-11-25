@@ -10,7 +10,7 @@ export class TopRightButtonComponent implements OnInit {
 
   @Input() color: ThemePalette = 'primary';
   @Input() icon: string;
-  @Output() click = new EventEmitter();
+  @Output() onClick = new EventEmitter();
 
   constructor() {
   }

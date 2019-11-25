@@ -39,6 +39,7 @@ import {ClosePrayerDialogComponent} from './close-prayer-dialog/close-prayer-dia
 import {HomeComponent} from './home/home.component';
 import {EmptyPlaceholderComponent} from './empty-placeholder/empty-placeholder.component';
 import {TopRightButtonComponent} from './top-right-button/top-right-button.component';
+import {JoinToGroupDialogComponent} from './join-to-group/join-to-group-dialog.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -68,14 +69,16 @@ const httpInterceptorProviders = [
     ClosePrayerDialogComponent,
     HomeComponent,
     EmptyPlaceholderComponent,
-    TopRightButtonComponent
+    TopRightButtonComponent,
+    JoinToGroupDialogComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
     CreatePrayerDialogComponent,
     FeedbackDialogComponent,
     PrayDialogComponent,
-    ClosePrayerDialogComponent
+    ClosePrayerDialogComponent,
+    JoinToGroupDialogComponent
   ],
   imports: [
     BrowserModule,
