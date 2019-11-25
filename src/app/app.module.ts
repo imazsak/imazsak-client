@@ -41,7 +41,7 @@ import {EmptyPlaceholderComponent} from './empty-placeholder/empty-placeholder.c
 import {TopRightButtonComponent} from './top-right-button/top-right-button.component';
 import {JoinToGroupDialogComponent} from './join-to-group/join-to-group-dialog.component';
 import {ShowJoinCodeDialogComponent} from './join-to-group/show-join-code-dialog.component';
-import {MatSnackBarModule} from '@angular/material';
+import {MatGridListModule, MatSnackBarModule} from '@angular/material';
 import {ClipboardModule} from 'ngx-clipboard';
 
 const httpInterceptorProviders = [
@@ -102,6 +102,7 @@ const httpInterceptorProviders = [
     MatFormFieldModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatGridListModule,
     ClipboardModule,
     AppRoutingModule
   ],

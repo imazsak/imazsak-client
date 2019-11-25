@@ -1,6 +1,41 @@
 <div class="container">
   <app-header [title]="'Imazsák'"></app-header>
   <div class="main">
-    TODO
+    <div class="quote">
+      <i>&bdquo;[...] ha közületek ketten egyetértenek a földön mindabban, amit kérnek, azt mind megadja nekik az én
+        mennyei Atyám.&rdquo; - <a target="_blank" href="https://szentiras.hu/RUF/Mt18">Mt. 18,19</a></i>
+    </div>
+    <mat-grid-list cols="2" rowHeight="3:2" class="icon-list">
+      <mat-grid-tile>
+        <button mat-button (click)="openCreatePrayerDialog()">
+          <i class="fas fa-pen"></i><br/>
+          Imakérés
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button routerLink="/my-prayers">
+          <i class="fas fa-pray"></i><br/>
+          Imakéréseim
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button routerLink="/groups">
+          <i class="fas fa-user-friends"></i><br/>
+          Közösségeim
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button (click)="openPrayDialog()">
+          <i class="fas fa-praying-hands"></i><br/>
+          Imádkozom
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2">
+        <button mat-button (click)="openSettingsDialog()">
+          <i class="fas fa-cog"></i><br/>
+          Beállításaim
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
 </div>
