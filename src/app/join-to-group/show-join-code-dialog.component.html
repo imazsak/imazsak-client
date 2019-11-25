@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Meghívás</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Csatlakozási kód" [(ngModel)]="data.code" cdkFocusInitial>
+    <button matSuffix mat-icon-button (click)="copy()">
+      <i class="far fa-copy"></i>
+    </button>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="">Bezárás</button>
+</div>

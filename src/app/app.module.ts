@@ -40,6 +40,9 @@ import {HomeComponent} from './home/home.component';
 import {EmptyPlaceholderComponent} from './empty-placeholder/empty-placeholder.component';
 import {TopRightButtonComponent} from './top-right-button/top-right-button.component';
 import {JoinToGroupDialogComponent} from './join-to-group/join-to-group-dialog.component';
+import {ShowJoinCodeDialogComponent} from './join-to-group/show-join-code-dialog.component';
+import {MatSnackBarModule} from '@angular/material';
+import {ClipboardModule} from 'ngx-clipboard';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -70,7 +73,8 @@ const httpInterceptorProviders = [
     HomeComponent,
     EmptyPlaceholderComponent,
     TopRightButtonComponent,
-    JoinToGroupDialogComponent
+    JoinToGroupDialogComponent,
+    ShowJoinCodeDialogComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
@@ -78,7 +82,8 @@ const httpInterceptorProviders = [
     FeedbackDialogComponent,
     PrayDialogComponent,
     ClosePrayerDialogComponent,
-    JoinToGroupDialogComponent
+    JoinToGroupDialogComponent,
+    ShowJoinCodeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +101,8 @@ const httpInterceptorProviders = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSnackBarModule,
+    ClipboardModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
