@@ -8,10 +8,11 @@ import {NotificationsComponent} from './notifications/notifications.component';
 import {GroupComponent} from './group/group.component';
 import {MembersComponent} from './members/members.component';
 import {PrayersComponent} from './prayers/prayers.component';
+import {HomeComponent} from './home/home.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: GroupListComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'groups', component: GroupListComponent, canActivate: [AuthGuard]},
   {path: 'groups/:id', component: GroupComponent, canActivate: [AuthGuard]},
   {path: 'groups/:id/members', component: MembersComponent, canActivate: [AuthGuard]},
