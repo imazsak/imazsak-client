@@ -2,6 +2,7 @@
 <div mat-dialog-content>
   <mat-form-field>
     <textarea matInput
+              cdkFocusInitial
               cdkTextareaAutosize
               #autosize="cdkTextareaAutosize"
               cdkAutosizeMinRows="1"
@@ -18,5 +19,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Mégse</button>
-  <button mat-button (click)="create()" cdkFocusInitial>Elküldés</button>
+  <button mat-button (click)="create()">Elküldés</button>
 </div>
