@@ -1,9 +1,9 @@
 <div class="container">
   <app-header [title]="'Imakéréseim'"></app-header>
   <app-empty-placeholder class="main" *ngIf="groups.length === 0"
-                         [text]="'Itt tudod majd megnézni az imakéréseid, miután csatlakoztál legalább egy közösséghez!'"></app-empty-placeholder>
+                         [text]="'Itt tudod majd megnézni az imakéréseid, miután csatlakoztál legalább egy közösséghez.'"></app-empty-placeholder>
   <app-empty-placeholder class="main" *ngIf="myPrayers.length === 0"
-                         [text]="'Még nem kértél imát!'"></app-empty-placeholder>
+                         [text]="'Jelenleg nincs aktív imakérésed.!'"></app-empty-placeholder>
   <div class="main" *ngIf="groups.length !== 0 && myPrayers.length !== 0">
     <mat-nav-list>
       <mat-list-item *ngFor="let prayer of myPrayers">
