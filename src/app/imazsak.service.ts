@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {map, publishReplay, refCount} from 'rxjs/operators';
 
 @Injectable({
@@ -60,16 +60,15 @@ export class ImazsakService {
   }
 
   public listNotifications(): Observable<NotificationListData[]> {
-    const fakeData = [
-      {id: '', message: 'Message 1', createdAt: 1566772198150, meta: {isRead: false}},
-      {id: '', message: 'Message 2', createdAt: 1566772198150, meta: {isRead: false}},
-      {id: '', message: 'Message 3', createdAt: 1566772198150, meta: {isRead: true}},
-      {id: '', message: 'Message 4', createdAt: 1566772198150, meta: {isRead: true}},
-      {id: '', message: 'Message 5', createdAt: 1566772198150, meta: {isRead: true}},
-      {id: '', message: 'Message 6', createdAt: 1566772198150, meta: {isRead: true}}
-    ];
-    // return this.http.get<NotificationListData[]>('/api/me/notifications');
-    return of(fakeData);
+    return this.http.get<NotificationListData[]>('/api/me/notifications');
+  }
+
+  public deleteNotification(id: string): Observable<any> {
+    return this.http.post<any>('/api/me/notifications/delete', {ids: [id]});
+  }
+
+  public readNotification(id: string): Observable<any> {
+    return this.http.post<any>('/api/me/notifications/read', {ids: [id]});
   }
 
   public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
@@ -139,7 +138,7 @@ export interface NotificationMeta {
 
 export interface NotificationListData {
   id: string;
-  message: string;
+  message: object;
   createdAt: number;
   meta: NotificationMeta;
 }
