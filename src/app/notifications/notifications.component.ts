@@ -14,25 +14,17 @@ export class NotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadNotifications();
+    this.imazsak.listNotifications$().subscribe(notifications => this.notifications = notifications);
   }
 
   delete(id: string) {
     this.notifications = this.notifications.filter(noti => noti.id !== id);
-    this.imazsak.deleteNotification(id).subscribe(_ => {
-      if (this.notifications.length < 5) {
-        this.loadNotifications();
-      }
-    });
+    this.imazsak.deleteNotification(id).subscribe();
   }
 
   read(id: string) {
     this.notifications.find(noti => noti.id === id).meta.isRead = true;
     this.imazsak.readNotification(id).subscribe();
-  }
-
-  loadNotifications() {
-    this.imazsak.listNotifications().subscribe(notifications => this.notifications = notifications);
   }
 
 }

@@ -18,6 +18,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import {HeaderComponent} from './header/header.component';
 import {SettingsButtonComponent} from './settings/settings-button.component';
@@ -43,6 +44,7 @@ import {JoinToGroupDialogComponent} from './join-to-group/join-to-group-dialog.c
 import {ShowJoinCodeDialogComponent} from './join-to-group/show-join-code-dialog.component';
 import {MatGridListModule, MatSnackBarModule} from '@angular/material';
 import {ClipboardModule} from 'ngx-clipboard';
+import {NotificationsButtonComponent} from './notifications/notifications-button.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -74,7 +76,8 @@ const httpInterceptorProviders = [
     EmptyPlaceholderComponent,
     TopRightButtonComponent,
     JoinToGroupDialogComponent,
-    ShowJoinCodeDialogComponent
+    ShowJoinCodeDialogComponent,
+    NotificationsButtonComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
@@ -103,6 +106,7 @@ const httpInterceptorProviders = [
     MatSelectModule,
     MatSnackBarModule,
     MatGridListModule,
+    MatBadgeModule,
     ClipboardModule,
     AppRoutingModule
   ],

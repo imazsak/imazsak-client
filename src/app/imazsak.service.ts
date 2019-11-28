@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map, publishReplay, refCount} from 'rxjs/operators';
+import {BehaviorSubject, Observable, timer} from 'rxjs';
+import {map, publishReplay, refCount, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,10 @@ export class ImazsakService {
   private getMeCache: Observable<MeData>;
   private listGroupsCache: Observable<GroupListData[]>;
   private listMyPrayersCache: Observable<MyPrayerListData[]>;
+  private listNotifications: BehaviorSubject<NotificationListData[]> = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) {
+    timer(0, 30000).subscribe(_ => this.refreshNotifications());
   }
 
   public getMe(): Observable<MeData> {
@@ -59,16 +61,18 @@ export class ImazsakService {
     return this.http.post('/api/feedback', data);
   }
 
-  public listNotifications(): Observable<NotificationListData[]> {
-    return this.http.get<NotificationListData[]>('/api/me/notifications');
+  public listNotifications$(): Observable<NotificationListData[]> {
+    return this.listNotifications.asObservable();
   }
 
   public deleteNotification(id: string): Observable<any> {
-    return this.http.post<any>('/api/me/notifications/delete', {ids: [id]});
+    return this.http.post<any>('/api/me/notifications/delete', {ids: [id]})
+      .pipe(tap(_ => this.refreshNotifications()));
   }
 
   public readNotification(id: string): Observable<any> {
-    return this.http.post<any>('/api/me/notifications/read', {ids: [id]});
+    return this.http.post<any>('/api/me/notifications/read', {ids: [id]})
+      .pipe(tap(_ => this.refreshNotifications()));
   }
 
   public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
@@ -103,6 +107,11 @@ export class ImazsakService {
     return this.http.post<any>(`/api/groups/join`, data);
   }
 
+  private refreshNotifications() {
+    this.http.get<NotificationListData[]>('/api/me/notifications').subscribe(notifications => {
+      this.listNotifications.next(notifications);
+    });
+  }
 }
 
 export interface MeData {
