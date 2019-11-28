@@ -1,6 +1,8 @@
 <div class="container">
   <app-header [title]="'Értesítések'"></app-header>
-  <div class="main">
+  <app-empty-placeholder class="main" *ngIf="notifications.length === 0"
+                         [text]="'Jelenleg nincsenek értesítéseid.'"></app-empty-placeholder>
+  <div class="main" *ngIf="notifications.length !== 0">
     <mat-nav-list>
       <mat-list-item
         *ngFor="let notification of notifications"
