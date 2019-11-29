@@ -1,0 +1,16 @@
+<div class="container">
+  <app-header [title]="'Értesítések'"></app-header>
+  <div class="main" *ngIf="!!notification">
+    <div style="padding: 16px">
+      <div class="mat-body" *ngIf="!!notification.message.userName"><b>{{notification.message.userName}}</b>
+        visszajelzést küldött egy imakérésére.
+      </div>
+      <div class="mat-body" *ngIf="!notification.message.userName">Visszajelzést kaptál egy imakérésre.</div>
+      <div class="mat-small date-line">{{notification.createdAt | date:'yyyy.MM.dd. HH:mm'}}</div>
+      <div>
+        <div class="prayer-line"><i class="fas fa-praying-hands"></i> {{notification.message.message}}</div>
+        <div class="mat-body-strong"><i class="far fa-comment"></i> {{notification.message.feedback}}</div>
+      </div>
+    </div>
+  </div>
+</div>

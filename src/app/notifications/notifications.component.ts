@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ImazsakService, NotificationListData} from '../imazsak.service';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -12,7 +13,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   notifications: NotificationListData[] = [];
   private subscription: Subscription;
 
-  constructor(public imazsak: ImazsakService) {
+  constructor(public imazsak: ImazsakService, private router: Router) {
   }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   read(id: string) {
     this.notifications.find(noti => noti.id === id).meta.isRead = true;
     this.imazsak.readNotification(id).subscribe();
+    this.router.navigate(['/notifications', id]);
   }
 
   ngOnDestroy(): void {

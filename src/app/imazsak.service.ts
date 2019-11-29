@@ -147,9 +147,15 @@ export interface NotificationMeta {
 
 export interface NotificationListData {
   id: string;
-  message: object;
+  message: PrayerCloseFeedbackNotificationData;
   createdAt: number;
   meta: NotificationMeta;
+}
+
+export interface PrayerCloseFeedbackNotificationData {
+  userName?: string;
+  message: string;
+  feedback: string;
 }
 
 export interface GroupPrayerListData {

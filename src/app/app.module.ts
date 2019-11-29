@@ -45,6 +45,7 @@ import {ShowJoinCodeDialogComponent} from './join-to-group/show-join-code-dialog
 import {MatGridListModule, MatSnackBarModule} from '@angular/material';
 import {ClipboardModule} from 'ngx-clipboard';
 import {NotificationsButtonComponent} from './notifications/notifications-button.component';
+import {NotificationDetailsComponent} from './notification-details/notification-details.component';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -77,7 +78,8 @@ const httpInterceptorProviders = [
     TopRightButtonComponent,
     JoinToGroupDialogComponent,
     ShowJoinCodeDialogComponent,
-    NotificationsButtonComponent
+    NotificationsButtonComponent,
+    NotificationDetailsComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
