@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {GroupMemberListData, GroupPrayerListData, ImazsakService} from '../imazsak.service';
 
 
@@ -23,6 +23,7 @@ export class PrayDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<PrayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PrayDialogData,
+    private snackBar: MatSnackBar,
     private imazsak: ImazsakService
   ) {
     this.isOnlyOne = !!data.prayer;
@@ -57,6 +58,7 @@ export class PrayDialogComponent implements OnInit {
     } else if (this.prayerList.length === 0) {
       this.imazsak.loadNext10Prayer(this.data.groupIds).subscribe(prayers => {
         if (prayers.length === 0) {
+          this.snackBar.open('Jelenleg nincs több imakérés!', null, {duration: 3000});
           this.dialogRef.close();
         } else {
           this.prayerList = prayers;
