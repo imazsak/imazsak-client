@@ -1,20 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {ImazsakService} from '../imazsak.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ImazsakService, NotificationListData} from '../imazsak.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent implements OnInit, OnDestroy {
 
-  notifications = [];
+  notifications: NotificationListData[] = [];
+  private subscription: Subscription;
 
   constructor(public imazsak: ImazsakService) {
   }
 
   ngOnInit() {
-    this.imazsak.listNotifications$().subscribe(notifications => this.notifications = notifications);
+    this.subscription = this.imazsak.listNotifications$().subscribe(notifications => this.notifications = notifications);
   }
 
   delete(id: string) {
@@ -25,6 +27,12 @@ export class NotificationsComponent implements OnInit {
   read(id: string) {
     this.notifications.find(noti => noti.id === id).meta.isRead = true;
     this.imazsak.readNotification(id).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    if (!!this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
