@@ -7,11 +7,15 @@
       <mat-list-item
         *ngFor="let notification of notifications"
         [ngClass]="{'new': !notification.meta.isRead}"
-        (click)="read(notification.id)"
+        (click)="read(notification)"
         [ngSwitch]="notification.meta.notificationType">
         <h4 mat-line *ngSwitchCase="'PRAYER_CLOSE_FEEDBACK'">
           <b>{{notification.message!.userName}}</b> {{notification.message.feedback}}</h4>
-        <h4 mat-line *ngSwitchDefault>{{notification.message | json}}</h4>
+
+        <h4 mat-line *ngSwitchCase="'PRAYER_CREATED'">
+          <b>{{notification.message!.userName}}</b> Új imát kért!
+        </h4>
+
         <p mat-line class="date-line">
           <span><i class="far fa-calendar"></i> {{notification.createdAt | ago}}</span>
         </p>
