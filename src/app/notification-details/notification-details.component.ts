@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ImazsakService, NotificationListData} from '../imazsak.service';
+import {ImazsakService, NotificationListData, PrayerCloseFeedbackNotificationData, PrayerCreatedNotificationData} from '../imazsak.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
 export class NotificationDetailsComponent implements OnInit, OnDestroy {
 
   notification: NotificationListData;
+  data: PrayerCloseFeedbackNotificationData;
   private subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private imazsak: ImazsakService) {
@@ -20,6 +21,7 @@ export class NotificationDetailsComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.subscription = this.imazsak.listNotifications$().subscribe(notifications => {
       this.notification = notifications.find(noti => noti.id === id);
+      this.data = this.notification.message as PrayerCloseFeedbackNotificationData;
     });
   }
 
