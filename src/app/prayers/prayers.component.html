@@ -1,6 +1,8 @@
 <div class="container">
   <app-header [title]="group.name"></app-header>
-  <div class="main">
+  <app-empty-placeholder class="main" *ngIf="prayers.length === 0"
+                         [text]="'Jelenleg nincs egy imakérés sem!'"></app-empty-placeholder>
+  <div class="main" *ngIf="prayers.length !== 0">
     <mat-nav-list>
       <mat-list-item *ngFor="let prayer of prayers" (click)="openPrayDialog(prayer)">
         <h4 mat-line>{{prayer.message}}</h4>
