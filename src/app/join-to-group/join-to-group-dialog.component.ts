@@ -10,4 +10,7 @@ export class JoinToGroupDialogComponent {
   constructor(public dialogRef: MatDialogRef<JoinToGroupDialogComponent>) {
   }
 
+  scanSuccess(code: string) {
+    this.dialogRef.close(code);
+  }
 }

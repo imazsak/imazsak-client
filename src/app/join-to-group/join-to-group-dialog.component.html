@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>Csatlakozás</h1>
 <div mat-dialog-content>
-  <mat-form-field>
+  <div>
+    <zxing-scanner (scanSuccess)="scanSuccess($event)"></zxing-scanner>
+  </div>
+  <mat-form-field style="width: 100%">
     <input matInput cdkFocusInitial placeholder="Csatlakozási kód" #code>
   </mat-form-field>
 </div>
