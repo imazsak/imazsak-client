@@ -46,6 +46,7 @@ import {MatGridListModule, MatSnackBarModule} from '@angular/material';
 import {ClipboardModule} from 'ngx-clipboard';
 import {NotificationsButtonComponent} from './notifications/notifications-button.component';
 import {NotificationDetailsComponent} from './notification-details/notification-details.component';
+import {NgxKjuaModule} from 'ngx-kjua';
 
 const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -110,6 +111,7 @@ const httpInterceptorProviders = [
     MatGridListModule,
     MatBadgeModule,
     ClipboardModule,
+    NgxKjuaModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],

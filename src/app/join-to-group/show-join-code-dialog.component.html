@@ -1,11 +1,7 @@
-<h1 mat-dialog-title>Meghívás</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <input matInput placeholder="Csatlakozási kód" [(ngModel)]="data.code" cdkFocusInitial>
-    <button matSuffix mat-icon-button (click)="copy()">
-      <i class="far fa-copy"></i>
-    </button>
-  </mat-form-field>
+<h1 mat-dialog-title>Meghívó kód</h1>
+<div mat-dialog-content style="text-align: center">
+  <ngx-kjua [text]="data.code" (click)="copy()"></ngx-kjua>
+  <div class="mat-small">A kódra kattintva vágólapra másolhatod a kódot és úgy is el tudod küldeni.</div>
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="">Bezárás</button>
