@@ -48,6 +48,8 @@ import {NotificationsButtonComponent} from './notifications/notifications-button
 import {NotificationDetailsComponent} from './notification-details/notification-details.component';
 import {NgxKjuaModule} from 'ngx-kjua';
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 
 const httpInterceptorProviders = [
@@ -115,7 +117,8 @@ const httpInterceptorProviders = [
     ClipboardModule,
     NgxKjuaModule,
     ZXingScannerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
