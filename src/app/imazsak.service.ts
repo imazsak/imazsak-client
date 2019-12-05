@@ -111,15 +111,15 @@ export class ImazsakService {
   }
 
   public pushSubscribe(deviceId: string, subscription: any): Observable<any> {
-    return this.http.post<any>(`${this.baseDomain}/api/me/notifications/push/subscribe`, {deviceId, subscription});
+    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/subscribe`, {deviceId, subscription});
   }
 
   public pushUnsubscribe(deviceId: string): Observable<any> {
-    return this.http.post<any>(`${this.baseDomain}/api/me/notifications/push/unsubscribe`, {deviceId});
+    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/unsubscribe`, {deviceId});
   }
 
   public pushTest(): Observable<any> {
-    return this.http.post<any>(`${this.baseDomain}/api/me/notifications/push/test`, {});
+    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/test`, {});
   }
 
   private refreshNotifications() {
@@ -204,3 +204,4 @@ export interface ClosePrayerRequest {
 export interface TokenData {
   token: string;
 }
+
