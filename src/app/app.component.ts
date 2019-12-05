@@ -7,5 +7,6 @@ import {NotificationService} from './notification.service';
 })
 export class AppComponent {
   constructor(noti: NotificationService) {
+    console.log('START');
   }
 }
