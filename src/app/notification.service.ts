@@ -21,6 +21,8 @@ export class NotificationService {
           this.unsubscribe();
         }
       });
+    } else {
+      console.log('PUSH not enabled :(');
     }
   }
 

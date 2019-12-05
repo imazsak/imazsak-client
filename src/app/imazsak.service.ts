@@ -204,4 +204,3 @@ export interface ClosePrayerRequest {
 export interface TokenData {
   token: string;
 }
-
