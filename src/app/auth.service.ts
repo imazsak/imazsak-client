@@ -50,7 +50,7 @@ export class AuthService {
   public logout() {
     this.tokenData = undefined;
     localStorage.removeItem('tokenData');
-    this.router.navigate(['/login']);
+    window.location.replace('/login');
   }
 
   private refreshToken(): Observable<TokenData> {

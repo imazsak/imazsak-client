@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, timer} from 'rxjs';
 import {map, publishReplay, refCount, tap} from 'rxjs/operators';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ImazsakService {
   private listMyPrayersCache: Observable<MyPrayerListData[]>;
   private listNotifications: BehaviorSubject<NotificationListData[]> = new BehaviorSubject([]);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
     timer(0, 30000).subscribe(_ => this.refreshNotifications());
   }
 
@@ -107,9 +108,25 @@ export class ImazsakService {
     return this.http.post<any>(`/api/groups/join`, data);
   }
 
+  public pushSubscribe(deviceId: string, subscription: any): Observable<any> {
+    return this.http.post<any>(`/api/me/notifications/push/subscribe`, {deviceId, subscription});
+  }
+
+  public pushUnsubscribe(deviceId: string): Observable<any> {
+    return this.http.post<any>(`/api/me/notifications/push/unsubscribe`, {deviceId});
+  }
+
+  public pushTest(): Observable<any> {
+    return this.http.post<any>(`/api/me/notifications/push/test`, {});
+  }
+
   private refreshNotifications() {
-    this.http.get<NotificationListData[]>('/api/me/notifications').subscribe(notifications => {
-      this.listNotifications.next(notifications);
+    this.auth.isLoggedIn().subscribe(isLoggenIn => {
+      if (isLoggenIn) {
+        this.http.get<NotificationListData[]>('/api/me/notifications').subscribe(notifications => {
+          this.listNotifications.next(notifications);
+        });
+      }
     });
   }
 }
