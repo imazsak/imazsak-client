@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - push-notification
 
 jobs:
   build:
