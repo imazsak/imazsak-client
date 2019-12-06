@@ -51,6 +51,7 @@ import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {NotificationTestComponent} from './notification-test/notification-test.component';
+import {NotificationService} from './notification.service';
 
 
 const httpInterceptorProviders = [

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import {ApplicationRef, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, timer} from 'rxjs';
-import {map, publishReplay, refCount, tap} from 'rxjs/operators';
+import {BehaviorSubject, concat, Observable, timer} from 'rxjs';
+import {first, map, publishReplay, refCount, tap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 
 @Injectable({
@@ -16,9 +16,13 @@ export class ImazsakService {
   private listMyPrayersCache: Observable<MyPrayerListData[]>;
   private listNotifications: BehaviorSubject<NotificationListData[]> = new BehaviorSubject([]);
 
-  constructor(private http: HttpClient, private auth: AuthService) {
-    timer(0, 30000).subscribe(_ => this.refreshNotifications());
-  }
+  constructor(private http: HttpClient, private auth: AuthService, appRef: ApplicationRef) {
+      const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+      const timer$ = timer(0, 30000);
+      const timerAndAppIsStable$ = concat(appIsStable$, timer$);
+
+      timerAndAppIsStable$.subscribe(() => this.refreshNotifications());
+    }
 
   public getMe(): Observable<MeData> {
     if (!this.getMeCache) {

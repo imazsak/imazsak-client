@@ -13,7 +13,6 @@ export class NotificationService {
 
   constructor(private swPush: SwPush, private auth: AuthService, private imazsak: ImazsakService) {
     if (this.swPush.isEnabled) {
-      console.log('PUSH enabled :)');
       this.initDeviceId();
       this.auth.isLoggedIn().subscribe(isLoggedIn => {
         if (isLoggedIn) {
@@ -22,8 +21,6 @@ export class NotificationService {
           this.unsubscribe();
         }
       });
-    } else {
-      console.log('PUSH not enabled :(');
     }
   }
 
