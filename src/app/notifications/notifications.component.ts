@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ImazsakService, NotificationListData, PrayerCreatedNotificationData} from '../imazsak.service';
-import {Subscription} from 'rxjs';
+import {Subscription, timer} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {PrayDialogComponent} from '../pray-dialog/pray-dialog.component';
@@ -19,7 +19,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.imazsak.listNotifications$().subscribe(notifications => this.notifications = notifications);
+    this.subscription = timer(0, 30000).subscribe(() => this.refreshNotifications());
   }
 
   delete(id: string) {
@@ -48,6 +48,10 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         data: {prayer, groupIds: data.groupIds}
       });
     });
+  }
+
+  private refreshNotifications() {
+    this.imazsak.listNotifications().subscribe(notifications => this.notifications = notifications);
   }
 
   ngOnDestroy(): void {

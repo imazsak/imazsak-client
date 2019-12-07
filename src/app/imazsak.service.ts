@@ -14,14 +14,14 @@ export class ImazsakService {
   private getMeCache: Observable<MeData>;
   private listGroupsCache: Observable<GroupListData[]>;
   private listMyPrayersCache: Observable<MyPrayerListData[]>;
-  private listNotifications: BehaviorSubject<NotificationListData[]> = new BehaviorSubject([]);
+  private notificationCountLabel: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private http: HttpClient, private auth: AuthService, appRef: ApplicationRef) {
       const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
       const timer$ = timer(0, 30000);
       const timerAndAppIsStable$ = concat(appIsStable$, timer$);
 
-      timerAndAppIsStable$.subscribe(() => this.refreshNotifications());
+      timerAndAppIsStable$.subscribe(() => this.refreshNotificationCountLabel());
     }
 
   public getMe(): Observable<MeData> {
@@ -68,18 +68,22 @@ export class ImazsakService {
     return this.http.post(`${this.baseDomain}/api/feedback`, data);
   }
 
-  public listNotifications$(): Observable<NotificationListData[]> {
-    return this.listNotifications.asObservable();
+  public notificationCountLabel$(): Observable<string> {
+    return this.notificationCountLabel.asObservable();
+  }
+
+  public listNotifications(): Observable<NotificationListData[]> {
+    return this.http.get<NotificationListData[]>(`${this.baseDomain}/api/me/notifications`);
   }
 
   public deleteNotification(id: string): Observable<any> {
     return this.http.post<any>(`${this.baseDomain}/api/me/notifications/delete`, {ids: [id]})
-      .pipe(tap(_ => this.refreshNotifications()));
+      .pipe(tap(_ => this.refreshNotificationCountLabel()));
   }
 
   public readNotification(id: string): Observable<any> {
     return this.http.post<any>(`${this.baseDomain}/api/me/notifications/read`, {ids: [id]})
-      .pipe(tap(_ => this.refreshNotifications()));
+      .pipe(tap(_ => this.refreshNotificationCountLabel()));
   }
 
   public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
@@ -126,11 +130,11 @@ export class ImazsakService {
     return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/test`, {});
   }
 
-  private refreshNotifications() {
-    this.auth.isLoggedIn().subscribe(isLoggenIn => {
-      if (isLoggenIn) {
-        this.http.get<NotificationListData[]>(`${this.baseDomain}/api/me/notifications`).subscribe(notifications => {
-          this.listNotifications.next(notifications);
+  private refreshNotificationCountLabel() {
+    this.auth.isLoggedIn().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.http.get<NotificationsInfoData>(`${this.baseDomain}/api/me/notifications/info`).subscribe(info => {
+          this.notificationCountLabel.next(info.c);
         });
       }
     });
@@ -173,6 +177,10 @@ export interface NotificationListData {
   message: PrayerCloseFeedbackNotificationData | PrayerCreatedNotificationData;
   createdAt: number;
   meta: NotificationMeta;
+}
+
+export interface NotificationsInfoData {
+  c: string;
 }
 
 export interface PrayerCloseFeedbackNotificationData {
