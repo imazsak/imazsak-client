@@ -51,7 +51,7 @@ import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {NotificationTestComponent} from './notification-test/notification-test.component';
-import {NotificationService} from './notification.service';
+import {NoInternetDialogComponent} from './no-internet-dialog/no-internet-dialog.component';
 
 
 const httpInterceptorProviders = [
@@ -87,7 +87,8 @@ const httpInterceptorProviders = [
     ShowJoinCodeDialogComponent,
     NotificationsButtonComponent,
     NotificationDetailsComponent,
-    NotificationTestComponent
+    NotificationTestComponent,
+    NoInternetDialogComponent
   ],
   entryComponents: [
     SettingsDialogComponent,
@@ -96,7 +97,8 @@ const httpInterceptorProviders = [
     PrayDialogComponent,
     ClosePrayerDialogComponent,
     JoinToGroupDialogComponent,
-    ShowJoinCodeDialogComponent
+    ShowJoinCodeDialogComponent,
+    NoInternetDialogComponent
   ],
   imports: [
     BrowserModule,

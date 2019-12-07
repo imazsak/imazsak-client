@@ -17,12 +17,12 @@ export class ImazsakService {
   private notificationCountLabel: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private http: HttpClient, private auth: AuthService, appRef: ApplicationRef) {
-      const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
-      const timer$ = timer(0, 30000);
-      const timerAndAppIsStable$ = concat(appIsStable$, timer$);
+    const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+    const timer$ = timer(0, 30000);
+    const timerAndAppIsStable$ = concat(appIsStable$, timer$);
 
-      timerAndAppIsStable$.subscribe(() => this.refreshNotificationCountLabel());
-    }
+    timerAndAppIsStable$.subscribe(() => this.refreshNotificationCountLabel());
+  }
 
   public getMe(): Observable<MeData> {
     if (!this.getMeCache) {
