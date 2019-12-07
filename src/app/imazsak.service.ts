@@ -9,7 +9,7 @@ import {AuthService} from './auth.service';
 })
 export class ImazsakService {
 
-  readonly baseDomain = 'https://stage.imazsak.hu';
+  readonly baseDomain = '';
 
   private getMeCache: Observable<MeData>;
   private listGroupsCache: Observable<GroupListData[]>;
@@ -78,12 +78,12 @@ export class ImazsakService {
 
   public deleteNotification(id: string): Observable<any> {
     return this.http.post<any>(`${this.baseDomain}/api/me/notifications/delete`, {ids: [id]})
-      .pipe(tap(_ => this.refreshNotificationCountLabel()));
+      .pipe(tap(() => this.refreshNotificationCountLabel()));
   }
 
   public readNotification(id: string): Observable<any> {
     return this.http.post<any>(`${this.baseDomain}/api/me/notifications/read`, {ids: [id]})
-      .pipe(tap(_ => this.refreshNotificationCountLabel()));
+      .pipe(tap(() => this.refreshNotificationCountLabel()));
   }
 
   public listGroupPrayers(groupId: string): Observable<GroupPrayerListData[]> {
@@ -124,10 +124,6 @@ export class ImazsakService {
 
   public pushUnsubscribe(deviceId: string): Observable<any> {
     return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/unsubscribe`, {deviceId});
-  }
-
-  public pushTest(): Observable<any> {
-    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/test`, {});
   }
 
   private refreshNotificationCountLabel() {

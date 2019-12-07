@@ -27,7 +27,7 @@ export class AuthService {
         return this.refreshToken()
           .pipe(
             map(tokenData => tokenData.token),
-            catchError(_ => {
+            catchError(() => {
               this.logout();
               return of(undefined);
             })

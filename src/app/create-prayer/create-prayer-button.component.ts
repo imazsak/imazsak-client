@@ -23,7 +23,7 @@ export class CreatePrayerButtonComponent {
 
     dialogRef.afterClosed().subscribe(data => {
       if (!!data) {
-        this.imazsak.createPrayer(data).subscribe(_ => this.createdPrayer.emit({}));
+        this.imazsak.createPrayer(data).subscribe(() => this.createdPrayer.emit({}));
       }
     });
   }

@@ -40,7 +40,7 @@ export class PrayDialogComponent implements OnInit {
       this.dialogRef.close();
       return;
     }
-    this.imazsak.sendPray(this.prayer.groupId, this.prayer.id).subscribe(_ => {
+    this.imazsak.sendPray(this.prayer.groupId, this.prayer.id).subscribe(() => {
       if (this.isOnlyOne) {
         this.dialogRef.close();
       } else {

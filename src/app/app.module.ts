@@ -50,7 +50,6 @@ import {NgxKjuaModule} from 'ngx-kjua';
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {NotificationTestComponent} from './notification-test/notification-test.component';
 import {NoInternetDialogComponent} from './no-internet-dialog/no-internet-dialog.component';
 
 
@@ -87,7 +86,6 @@ const httpInterceptorProviders = [
     ShowJoinCodeDialogComponent,
     NotificationsButtonComponent,
     NotificationDetailsComponent,
-    NotificationTestComponent,
     NoInternetDialogComponent
   ],
   entryComponents: [

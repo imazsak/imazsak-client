@@ -35,7 +35,7 @@ export class MyPrayersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(data => {
       if (!!data && data.close) {
-        this.imazsak.closePrayer({id, message: data.message}).subscribe(_ => this.loadMyPrayers());
+        this.imazsak.closePrayer({id, message: data.message}).subscribe(() => this.loadMyPrayers());
       }
     });
   }
