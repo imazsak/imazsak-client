@@ -21,7 +21,7 @@ export class AuthService {
 
   public getToken(): Observable<string> {
     if (!!this.tokenData) {
-      if (this.validateTokenExp(this.tokenData.token)) {
+      if (this.validateTokenExp(this.tokenData.token) || !navigator.onLine) {
         return of(this.tokenData.token);
       } else if (this.validateTokenExp(this.tokenData.refreshToken)) {
         return this.refreshToken()
