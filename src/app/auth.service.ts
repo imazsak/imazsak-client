@@ -21,13 +21,13 @@ export class AuthService {
 
   public getToken(): Observable<string> {
     if (!!this.tokenData) {
-      if (this.validateTokenExp(this.tokenData.token)) {
+      if (this.validateTokenExp(this.tokenData.token) || !navigator.onLine) {
         return of(this.tokenData.token);
       } else if (this.validateTokenExp(this.tokenData.refreshToken)) {
         return this.refreshToken()
           .pipe(
             map(tokenData => tokenData.token),
-            catchError(_ => {
+            catchError(() => {
               this.logout();
               return of(undefined);
             })
@@ -50,7 +50,7 @@ export class AuthService {
   public logout() {
     this.tokenData = undefined;
     localStorage.removeItem('tokenData');
-    this.router.navigate(['/login']);
+    window.location.replace('/login');
   }
 
   private refreshToken(): Observable<TokenData> {
