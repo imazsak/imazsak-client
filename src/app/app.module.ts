@@ -121,7 +121,7 @@ const httpInterceptorProviders = [
     NgxKjuaModule,
     ZXingScannerModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('custom-service-worker.js', {enabled: environment.production})
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
