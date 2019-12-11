@@ -118,7 +118,7 @@ export class ImazsakService {
     return this.http.post<any>(`${this.baseDomain}/api/groups/join`, data);
   }
 
-  public getVapidPublicKey(): Observable<any> {
+  public getVapidPublicKey(): Observable<PublicKeyData> {
     return this.http.get<PublicKeyData>(`${this.baseDomain}/api/me/push-notification/public-key`);
   }
 

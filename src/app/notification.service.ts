@@ -58,10 +58,10 @@ export class NotificationService {
   }
 
   private refreshVapidPublicKey$(): Observable<any> {
-    return this.imazsak.getVapidPublicKey().pipe(map(publicKey => {
-      if (publicKey !== localStorage.vapidPublicKey) {
+    return this.imazsak.getVapidPublicKey().pipe(map(data => {
+      if (data.publicKey !== localStorage.vapidPublicKey) {
         this.unsubscribe();
-        localStorage.vapidPublicKey = publicKey;
+        localStorage.vapidPublicKey = data.publicKey;
       }
       return;
     }));
