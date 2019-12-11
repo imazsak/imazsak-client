@@ -118,8 +118,12 @@ export class ImazsakService {
     return this.http.post<any>(`${this.baseDomain}/api/groups/join`, data);
   }
 
-  public pushSubscribe(deviceId: string, subscription: any): Observable<any> {
-    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/subscribe`, {deviceId, subscription});
+  public getVapidPublicKey(): Observable<any> {
+    return this.http.get<PublicKeyData>(`${this.baseDomain}/api/me/push-notification/public-key`);
+  }
+
+  public pushSubscribe(publicKey: string, deviceId: string, subscription: any): Observable<any> {
+    return this.http.post<any>(`${this.baseDomain}/api/me/push-notification/subscribe`, {publicKey, deviceId, subscription});
   }
 
   public pushUnsubscribe(deviceId: string): Observable<any> {
@@ -211,4 +215,8 @@ export interface ClosePrayerRequest {
 
 export interface TokenData {
   token: string;
+}
+
+export interface PublicKeyData {
+  publicKey: string;
 }
