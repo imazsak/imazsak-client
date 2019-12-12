@@ -30,7 +30,8 @@
     "ngx-kjua": "1.6.0",
     "rxjs": "6.5.3",
     "tslib": "1.10.0",
-    "zone.js": "0.10.2"
+    "zone.js": "0.10.2",
+    "serialize-javascript": "2.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.803.20",
