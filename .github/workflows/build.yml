@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build docker image
-        run: docker build -t docker.pkg.github.com/imazsak/imazsak-client/app:${{ github.sha }} .
+        run: docker build -t docker.pkg.github.com/imazsak/imazsak-client/imazsak-client:${{ github.sha }} .
       - name: Push to registry
         run: |
           docker login -u ksisu -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
-          docker push docker.pkg.github.com/imazsak/imazsak-client/app:${{ github.sha }}
+          docker push docker.pkg.github.com/imazsak/imazsak-client/imazsak-client:${{ github.sha }}
