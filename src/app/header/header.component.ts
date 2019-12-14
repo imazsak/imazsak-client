@@ -8,11 +8,13 @@ import {AuthService} from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string;
+  isAdmin = false;
 
   constructor(public authService: AuthService) {
   }
 
   ngOnInit() {
+    this.authService.isAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
   }
 
 }

@@ -19,6 +19,12 @@ export class AuthService {
     return this.getToken().pipe(map(token => !!token));
   }
 
+  public isAdmin(): Observable<boolean> {
+    return this.getToken().pipe(map(token => {
+      return !!token && this.getJwtData(token).isAdmin === true;
+    }));
+  }
+
   public getToken(): Observable<string> {
     if (!!this.tokenData) {
       if (this.validateTokenExp(this.tokenData.token) || !navigator.onLine) {
