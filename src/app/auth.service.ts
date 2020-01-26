@@ -1,20 +1,18 @@
 import {Injectable} from '@angular/core';
-import {from, Observable, of} from 'rxjs';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public static readonly refreshUrl = '/auth/core/refresh-token';
-  private initFinishResolveF;
-  private initFinished = new Promise(resolve => this.initFinishResolveF = resolve);
   private tokenData: TokenData = undefined;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loadTokenFromLocalStorage();
-    this.initFinishResolveF(true);
   }
 
   public isLoggedIn(): Observable<boolean> {
@@ -28,12 +26,6 @@ export class AuthService {
   }
 
   public getToken(): Observable<string> {
-    return from(this.initFinished).pipe(
-      mergeMap(() => this.getTokenInternal())
-    );
-  }
-
-  private getTokenInternal(): Observable<string> {
     if (!!this.tokenData) {
       if (this.validateTokenExp(this.tokenData.token) || !navigator.onLine) {
         return of(this.tokenData.token);
