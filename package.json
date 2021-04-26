@@ -28,7 +28,7 @@
     "material-icons": "0.3.1",
     "ngx-clipboard": "12.3.1",
     "ngx-kjua": "1.6.0",
-    "rxjs": "6.5.4",
+    "rxjs": "6.6.7",
     "tslib": "1.11.1",
     "zone.js": "0.10.2",
     "serialize-javascript": "3.0.0"
